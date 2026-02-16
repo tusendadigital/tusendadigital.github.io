@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviso Legal | Tusenda Digital</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    
+    <style>
+        .legal-container {
+            max-width: 950px;
+            margin: 120px auto 80px;
+            background: linear-gradient(135deg, #1e1e1e, #2a2a2a);
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .legal-container h1 {
+            text-align: center;
+            margin-bottom: 50px;s
+            font-size: 3rem;
+            background: linear-gradient(135deg, #bd88fa, #a066e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .legal-section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border-left: 4px solid #bd88fa;
+            transition: all 0.3s ease;
+        }
+
+        .legal-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .legal-section h3 {
+            color: #bd88fa;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .legal-section p {
+            color: #e0e0e0;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .legal-section strong {
+            color: #ffffff;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .legal-container {
+                margin: 100px 20px 60px;
+                padding: 40px 20px;
+            }
+            
+            .legal-container h1 {
+                font-size: 2.5rem;
+            }
+            
+            .legal-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="main-nav-outer">
+        <div class="container">
+            <ul class="main-nav">
+                <li><a href="index.html#header">Inicio</a></li>
+                <li><a href="index.html#services">Servicios</a></li>
+                <li><a href="index.html#portfolio">Portfolio</a></li>
+                <li class="small-logo"><a href="index.html#header"><img src="img/small-logo.png" alt="TSD"></a></li>
+                <li><a href="index.html#testimonials">Testimonios</a></li>
+                <li><a href="index.html#about">Nosotros</a></li>
+                <li><a href="index.html#contact">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Legal Notice Content -->
+    <div class="legal-container">
+        <h1>Aviso Legal</h1>
+
+        <div class="legal-section animate-fadeInUp">
+            <h3>1. Titular del sitio web</h3>
+            <p>
+                <strong>Nombre:</strong> Tusenda Digital<br>
+                <strong>Domicilio:</strong> [Dirección física]<br>
+                <strong>Email:</strong> contacto@tusendadigital.com
+            </p>
+        </div>
+
+        <div class="legal-section animate-fadeInUp delay-1">
+            <h3>2. Propiedad Intelectual</h3>
+            <p>Los contenidos de esta web están protegidos por la normativa de propiedad intelectual. No está permitida su reproducción sin autorización expresa.</p>
+        </div>
+
+        <div class="legal-section animate-fadeInUp delay-2">
+            <h3>3. Responsabilidad</h3>
+            <p>No nos responsabilizamos del mal uso del contenido de esta web por parte de terceros. Se adoptarán las medidas necesarias para evitar errores y daños en los sistemas informáticos.</p>
+        </div>
+
+        <div class="legal-section animate-fadeInUp delay-3">
+            <h3>4. Condiciones de uso</h3>
+            <p>El uso de esta web implica la aceptación plena de los términos y condiciones establecidos en el presente aviso legal.</p>
+        </div>
+
+        <div class="text-center">
+            <a href="index.html" class="back-btn animate-fadeInUp delay-4">
+                ← Volver al inicio
+            </a>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

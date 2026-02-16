@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Dorking Helper</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                🔍 Google Dorking Helper
+            </div>
+            <div class="header-actions">
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+            </div>
+        </header>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h3 class="sidebar-title">Operadores de Google Dork</h3>
+            <div id="operatorCards" class="operator-cards"></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="workspace">
+                <h1 class="workspace-title">Construye tu Google Dork</h1>
+                <p class="workspace-subtitle">Arrastra y suelta los operadores para crear consultas de búsqueda avanzadas</p>
+                
+                <!-- Drop Zone -->
+                <div class="drop-zone" id="dropZone">
+                    <div class="drop-zone-empty">
+                        <div class="drop-zone-icon">⬇️</div>
+                        <div class="drop-zone-text">
+                            <strong>Arrastra operadores aquí</strong><br>
+                            Combina diferentes operadores para crear tu consulta
+                        </div>
+                    </div>
+                    <div class="drop-zone-filled">
+                        <div class="query-builder" id="queryBuilder"></div>
+                    </div>
+                </div>
+
+                <!-- Query Section -->
+                <div class="query-section">
+                    <label class="query-label">Consulta generada:</label>
+                    <input type="text" id="queryInput" class="query-input" placeholder="Tu Google Dork aparecerá aquí..." readonly>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="searchBtn">
+                        🔍 Buscar en Google
+                    </button>
+                    <button class="btn btn-success" id="copyBtn">
+                        📋 Copiar consulta
+                    </button>
+                    <button class="btn btn-secondary" id="clearBtn">
+                        🗑️ Limpiar todo
+                    </button>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <div class="footer-logo">
+                🔍 Google Dorking Helper © 2025
+            </div>
+            <div class="footer-links">
+                <a href="#" class="footer-link" onclick="showInfoModal()">Acerca de</a>
+                <a href="#" class="footer-link" onclick="showInfoModal()">Privacidad</a>
+                <a href="#" class="footer-link" onclick="showInfoModal()">Términos</a>
+            </div>
+            <div class="footer-text">
+                Hecho con ❤️ por Santitub
+            </div>
+        </footer>
+        
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle"></h3>
+                <button class="modal-close" id="modalClose">×</button>
+            </div>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Scripts -->
+    <script src="operadores.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
