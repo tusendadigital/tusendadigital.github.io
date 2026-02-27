@@ -1,0 +1,332 @@
+/*
+  Tu Senda Digital - Premium Cyber Landing
+  Custom CSS complements Tailwind (glass, scanlines, subtle texture).
+*/
+
+:root {
+  --ink: #0a0a0a;
+  --neon: #00ff41;
+  --electric: #8b5cf6;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Background grain + gradient */
+.app-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(1200px 700px at 15% 10%, rgba(139, 92, 246, 0.20), transparent 55%),
+    radial-gradient(900px 600px at 80% 20%, rgba(0, 255, 65, 0.16), transparent 55%),
+    radial-gradient(900px 700px at 55% 85%, rgba(0, 255, 65, 0.08), transparent 55%),
+    linear-gradient(180deg, #080808 0%, #0a0a0a 40%, #070707 100%);
+}
+
+.app-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+.navlink {
+  transition: color 180ms ease, opacity 180ms ease;
+}
+
+.navlink:hover {
+  color: var(--neon);
+}
+
+/* Scanlines overlay */
+.scanlines {
+  background:
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0) 30%),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.06),
+      rgba(255, 255, 255, 0.06) 1px,
+      rgba(0, 0, 0, 0) 3px,
+      rgba(0, 0, 0, 0) 6px
+    );
+  opacity: 0.18;
+  mask-image: linear-gradient(to bottom, black, black 70%, transparent);
+}
+
+/* Reusable glass panel */
+.glass-panel {
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  padding: 1.5rem;
+  box-shadow: 0 0 0 1px rgba(0, 255, 65, 0.06), 0 22px 60px rgba(0, 0, 0, 0.45);
+}
+
+/* Small stat cards */
+.stat-card {
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(0, 0, 0, 0.25);
+  padding: 0.75rem 0.9rem;
+}
+
+.stat-kpi {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.stat-sub {
+  margin-top: 0.15rem;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.60);
+}
+
+/* Hero visuals */
+.hero-card {
+  position: relative;
+}
+
+.hero-glow {
+  position: absolute;
+  inset: -2px;
+  background:
+    radial-gradient(500px 280px at 20% 0%, rgba(0, 255, 65, 0.20), transparent 60%),
+    radial-gradient(420px 240px at 90% 30%, rgba(139, 92, 246, 0.22), transparent 55%);
+  pointer-events: none;
+}
+
+/* Service cards */
+.service-card {
+  border-radius: 1.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  padding: 1.5rem;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04), 0 18px 50px rgba(0, 0, 0, 0.45);
+  transform: translateY(0);
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 255, 65, 0.30);
+  box-shadow: 0 0 0 1px rgba(0, 255, 65, 0.20), 0 28px 70px rgba(0, 0, 0, 0.55);
+}
+
+.service-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 255, 65, 0.35);
+  background: rgba(0, 255, 65, 0.10);
+  color: rgba(0, 255, 65, 0.95);
+  font-weight: 800;
+}
+
+/* Team cards */
+.team-card {
+  border-radius: 1.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  padding: 1.25rem;
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04), 0 18px 50px rgba(0, 0, 0, 0.45);
+}
+
+.team-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(139, 92, 246, 0.35);
+  box-shadow: 0 0 0 1px rgba(139, 92, 246, 0.18), 0 28px 70px rgba(0, 0, 0, 0.55);
+}
+
+/* Chips */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.80);
+}
+
+.chip-ok {
+  border-color: rgba(0, 255, 65, 0.30);
+  background: rgba(0, 255, 65, 0.10);
+  color: rgba(0, 255, 65, 0.95);
+}
+
+.chip-loading {
+  border-color: rgba(139, 92, 246, 0.35);
+  background: rgba(139, 92, 246, 0.12);
+  color: rgba(203, 213, 225, 0.95);
+}
+
+/* Portfolio items */
+.portfolio-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(0, 0, 0, 0.25);
+  padding: 0.9rem 1rem;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.portfolio-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 255, 65, 0.25);
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.portfolio-item.is-disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+.portfolio-item.is-disabled:hover {
+  transform: none;
+  border-color: rgba(255, 255, 255, 0.10);
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.portfolio-domain {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.9rem;
+}
+
+.portfolio-meta {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.60);
+}
+
+/* Portfolio cards (with thumbnails) */
+.portfolio-card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(0, 0, 0, 0.22);
+  overflow: hidden;
+  transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 255, 65, 0.22);
+  box-shadow: 0 0 0 1px rgba(0, 255, 65, 0.14), 0 22px 60px rgba(0, 0, 0, 0.55);
+}
+
+.portfolio-card.is-disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+.portfolio-card.is-disabled:hover {
+  transform: none;
+  border-color: rgba(255, 255, 255, 0.10);
+  box-shadow: none;
+}
+
+.portfolio-thumb {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.portfolio-thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(500px 240px at 20% 10%, rgba(0, 255, 65, 0.18), transparent 55%),
+    linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.00) 55%);
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+.portfolio-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(1.05) contrast(1.02);
+  transform: scale(1);
+  transition: transform 240ms ease;
+}
+
+.portfolio-card:hover .portfolio-thumb img {
+  transform: scale(1.03);
+}
+
+.portfolio-thumb.is-placeholder {
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.08) 10px,
+      rgba(255, 255, 255, 0.03) 10px,
+      rgba(255, 255, 255, 0.03) 20px
+    );
+}
+
+.portfolio-body {
+  padding: 0.95rem 1rem;
+  display: grid;
+  gap: 0.25rem;
+}
+
+/* CTA Banner */
+.cta-banner {
+  border-radius: 1.75rem;
+  border: 1px solid rgba(0, 255, 65, 0.18);
+  background:
+    radial-gradient(800px 280px at 20% 0%, rgba(0, 255, 65, 0.18), transparent 60%),
+    radial-gradient(800px 280px at 90% 80%, rgba(139, 92, 246, 0.18), transparent 55%),
+    rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+@media (max-width: 640px) {
+  .cta-banner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* Inputs */
+.input {
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.28);
+  padding: 0.75rem 0.9rem;
+  color: rgba(255, 255, 255, 0.90);
+  outline: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.input:focus {
+  border-color: rgba(0, 255, 65, 0.30);
+  box-shadow: 0 0 0 4px rgba(0, 255, 65, 0.12);
+}

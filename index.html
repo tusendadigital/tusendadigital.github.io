@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Tu Senda Digital | Auditoría Web & Desarrollo Seguro</title>
+    <meta
+      name="description"
+      content="Tu Senda Digital: especializada en auditoría de seguridad ofensiva y desarrollo seguro. Pentesting, detección de vulnerabilidades y arquitecturas seguras desde cero."
+    />
+    <meta name="theme-color" content="#0a0a0a" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Tu Senda Digital" />
+    <meta
+      property="og:description"
+      content="Auditoría ofensiva y desarrollo seguro. Reducimos superficie de ataque y construimos software con seguridad por diseño."
+    />
+    <meta property="og:type" content="website" />
+
+    <!-- Fonts (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- TailwindCSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "ui-sans-serif", "system-ui"],
+            },
+            colors: {
+              ink: "#0a0a0a",
+              neon: "#00ff41",
+              electric: "#8b5cf6",
+            },
+            boxShadow: {
+              glow: "0 0 0 1px rgba(0,255,65,.35), 0 0 35px rgba(0,255,65,.12)",
+              glowStrong:
+                "0 0 0 1px rgba(0,255,65,.55), 0 0 55px rgba(0,255,65,.18)",
+            },
+            keyframes: {
+              floaty: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-6px)" },
+              },
+            },
+            animation: {
+              floaty: "floaty 6s ease-in-out infinite",
+            },
+          },
+        },
+      };
+    </script>
+
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+  </head>
+
+  <body class="bg-ink text-white antialiased selection:bg-neon/25 selection:text-white">
+    <a class="sr-only" href="#contenido">Saltar al contenido</a>
+
+    <!-- Background texture -->
+    <div aria-hidden="true" class="app-bg"></div>
+
+    <!-- Matrix canvas -->
+    <canvas id="matrix" class="pointer-events-none fixed inset-0 z-[-2] h-full w-full opacity-40"></canvas>
+
+    <!-- Scanlines overlay -->
+    <div aria-hidden="true" class="scanlines pointer-events-none fixed inset-0 z-[-1]"></div>
+
+    <!-- Header / Nav -->
+    <header class="fixed inset-x-0 top-0 z-50">
+      <div class="mx-auto max-w-6xl px-4">
+        <div class="mt-4 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl">
+          <div class="flex items-center justify-between px-4 py-3 md:px-6">
+            <a href="#" class="group inline-flex items-center gap-2">
+              <span class="h-2 w-2 rounded-full bg-neon shadow-[0_0_24px_rgba(0,255,65,.65)]"></span>
+              <span class="text-sm font-semibold tracking-wide">
+                Tu Senda <span class="text-neon">Digital</span>
+              </span>
+            </a>
+
+            <nav class="hidden items-center gap-6 text-sm text-white/80 md:flex">
+              <a class="navlink" href="#servicios">Servicios</a>
+              <a class="navlink" href="#equipo">Equipo</a>
+              <a class="navlink" href="#portfolio">Portfolio</a>
+              <a class="navlink" href="#contacto">Contacto</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+              <a
+                href="#contacto"
+                class="hidden rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white/90 transition hover:border-white/20 hover:bg-white/10 md:inline-flex"
+              >
+                Agenda una llamada
+              </a>
+              <a
+                href="#contacto"
+                class="inline-flex items-center justify-center rounded-xl bg-neon px-4 py-2 text-sm font-semibold text-ink transition hover:shadow-glowStrong focus:outline-none focus:ring-2 focus:ring-neon/40"
+              >
+                Evaluar mi seguridad ahora
+              </a>
+              <button
+                id="mobileMenuBtn"
+                class="inline-flex items-center justify-center rounded-xl border border-white/10 bg-white/5 p-2 text-white/90 transition hover:bg-white/10 md:hidden"
+                aria-label="Abrir menú"
+                aria-expanded="false"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 7H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <path d="M4 12H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <path d="M4 17H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Mobile menu -->
+          <div id="mobileMenu" class="hidden border-t border-white/10 px-4 py-3 md:hidden">
+            <div class="grid gap-2 text-sm">
+              <a class="navlink" href="#servicios">Servicios</a>
+              <a class="navlink" href="#equipo">Equipo</a>
+              <a class="navlink" href="#portfolio">Portfolio</a>
+              <a class="navlink" href="#contacto">Contacto</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="contenido" class="pt-28">
+      <!-- Hero -->
+      <section class="relative overflow-hidden">
+        <div class="mx-auto max-w-6xl px-4">
+          <div class="py-14 md:py-20">
+            <div class="mx-auto max-w-4xl">
+              <p class="inline-flex items-center gap-2 rounded-full border border-neon/30 bg-neon/10 px-4 py-2 text-xs font-semibold tracking-wide text-neon">
+                <span class="inline-block h-1.5 w-1.5 rounded-full bg-neon"></span>
+                Especializada en auditoría ofensiva y desarrollo seguro
+              </p>
+
+              <h1 class="mt-6 text-balance text-4xl font-semibold leading-tight md:text-6xl">
+                Blindamos tu presencia digital
+              </h1>
+              <p class="mt-5 text-pretty text-base leading-relaxed text-white/75 md:text-lg">
+                Auditoría ofensiva, pentesting y arquitectura segura. Detectamos vulnerabilidades explotables y construimos software con
+                seguridad por diseño, rendimiento y escalabilidad desde el primer commit.
+              </p>
+
+              <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <a
+                  href="#contacto"
+                  class="inline-flex items-center justify-center rounded-xl bg-neon px-6 py-3 text-sm font-semibold text-ink transition hover:shadow-glowStrong focus:outline-none focus:ring-2 focus:ring-neon/40"
+                >
+                  Solicitar auditoría
+                </a>
+                <a
+                  href="#servicios"
+                  class="inline-flex items-center justify-center rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-sm font-medium text-white/90 transition hover:border-white/20 hover:bg-white/10"
+                >
+                  Nuestros servicios
+                </a>
+              </div>
+
+              <div class="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
+                <div class="stat-card">
+                  <p class="stat-kpi">Pentesting</p>
+                  <p class="stat-sub">OWASP / CVE</p>
+                </div>
+                <div class="stat-card">
+                  <p class="stat-kpi">Hardening</p>
+                  <p class="stat-sub">Infraestructura</p>
+                </div>
+                <div class="stat-card">
+                  <p class="stat-kpi">DevSecOps</p>
+                  <p class="stat-sub">CI/CD</p>
+                </div>
+                <div class="stat-card">
+                  <p class="stat-kpi">Arquitectura</p>
+                  <p class="stat-sub">Escalable</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Servicios -->
+      <section id="servicios" class="mx-auto max-w-6xl px-4 py-16 md:py-20">
+        <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          <div>
+            <h2 class="text-2xl font-semibold md:text-3xl">Servicios diseñados para reducir superficie de ataque</h2>
+            <p class="mt-3 max-w-2xl text-white/70">
+              Auditoría ofensiva y desarrollo seguro. Reducimos superficie de ataque con evidencia técnica y roadmap de remediación.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-10 grid gap-6 md:grid-cols-2">
+          <article class="service-card group">
+            <div class="service-icon">A</div>
+            <h3 class="mt-4 text-lg font-semibold">Auditoría de Seguridad</h3>
+            <p class="mt-2 text-sm leading-relaxed text-white/70">
+              Auditoría ofensiva, pentesting y análisis de superficie. Identificamos vulnerabilidades explotables y priorizamos riesgos reales.
+            </p>
+            <ul class="mt-4 space-y-2 text-sm text-white/75">
+              <li>Recon y ataque controlado (web / API)</li>
+              <li>OWASP Top 10 + lógica de negocio</li>
+              <li>Informe técnico y roadmap de remediación</li>
+            </ul>
+          </article>
+
+          <article class="service-card group">
+            <div class="service-icon">D</div>
+            <h3 class="mt-4 text-lg font-semibold">Desarrollo Seguro & Escalable</h3>
+            <p class="mt-2 text-sm leading-relaxed text-white/70">
+              Arquitecturas con seguridad por diseño. Construimos software escalable, observable y mantenible desde el primer commit.
+            </p>
+            <ul class="mt-4 space-y-2 text-sm text-white/75">
+              <li>Arquitectura, CI/CD y despliegue robusto</li>
+              <li>Buenas prácticas (clean code, tests, linting)</li>
+              <li>Hardening, gestión de secrets y DevSecOps</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <!-- Equipo -->
+      <section id="equipo" class="mx-auto max-w-6xl px-4 py-16 md:py-20">
+        <div>
+          <h2 class="text-2xl font-semibold md:text-3xl">Los 3 fundadores</h2>
+          <p class="mt-3 max-w-2xl text-white/70">
+              Perfil técnico, especialización en seguridad ofensiva y obsesión por el detalle.
+            </p>
+        </div>
+
+        <div class="mt-10 grid gap-6 md:grid-cols-3">
+          <article class="team-card group">
+            <img
+              src="./assets/img/fundadores/Mario.webp"
+              alt="Mario - Cofundador"
+              class="h-64 w-full rounded-2xl object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="mt-4 flex items-start justify-between gap-3">
+              <div>
+                <h3 class="text-lg font-semibold">Mario</h3>
+                <p class="text-sm text-white/70">Security & Engineering</p>
+              </div>
+              <span class="chip">Pentest</span>
+            </div>
+            <p class="mt-3 text-sm leading-relaxed text-white/70">
+              Auditorías enfocadas a explotación real, hardening y reducción de superficie.
+            </p>
+          </article>
+
+          <article class="team-card group">
+            <img
+              src="./assets/img/fundadores/manuel.webp"
+              alt="Manuel - Cofundador"
+              class="h-64 w-full rounded-2xl object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="mt-4 flex items-start justify-between gap-3">
+              <div>
+                <h3 class="text-lg font-semibold">Manuel</h3>
+                <p class="text-sm text-white/70">Product & Web Security</p>
+              </div>
+              <span class="chip">OWASP</span>
+            </div>
+            <p class="mt-3 text-sm leading-relaxed text-white/70">
+              Traduce riesgos técnicos a decisiones de producto y priorización.
+            </p>
+          </article>
+
+          <article class="team-card group">
+            <img
+              src="./assets/img/fundadores/thomas.webp"
+              alt="Thomas - Cofundador"
+              class="h-64 w-full rounded-2xl object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="mt-4 flex items-start justify-between gap-3">
+              <div>
+                <h3 class="text-lg font-semibold">Thomas</h3>
+                <p class="text-sm text-white/70">Architecture & Scale</p>
+              </div>
+              <span class="chip">DevSecOps</span>
+            </div>
+            <p class="mt-3 text-sm leading-relaxed text-white/70">
+              Arquitecturas sólidas, escalables y mantenibles con seguridad por diseño.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Portfolio -->
+      <section id="portfolio" class="mx-auto max-w-6xl px-4 py-16 md:py-20">
+        <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          <div>
+            <h2 class="text-2xl font-semibold md:text-3xl">Portfolio</h2>
+            <p class="mt-3 max-w-2xl text-white/70">
+              Proyectos activos y productos en desarrollo. Enfoque: seguridad ofensiva, performance y arquitectura segura.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-10 grid gap-6 md:grid-cols-2">
+          <div class="glass-panel">
+            <div class="flex items-center justify-between gap-3">
+              <h3 class="text-lg font-semibold">Proyectos activos</h3>
+              <span class="chip chip-ok">Online</span>
+            </div>
+            <div class="mt-5 grid gap-4 sm:grid-cols-2">
+              <a class="portfolio-card" href="https://app.living4football.club" target="_blank" rel="noreferrer">
+                <div class="portfolio-thumb">
+                  <img
+                    src="./assets/img/portfolio/living4footbal.webp"
+                    alt="Vista previa de app.living4football.club"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div class="portfolio-body">
+                  <p class="portfolio-domain">app.living4football.club</p>
+                  <p class="portfolio-meta">Ver proyecto</p>
+                </div>
+              </a>
+
+              <a class="portfolio-card" href="https://unpodcastseguro.com" target="_blank" rel="noreferrer">
+                <div class="portfolio-thumb">
+                  <img
+                    src="./assets/img/portfolio/unpodcastseguro.webp"
+                    alt="Vista previa de unpodcastseguro.com"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div class="portfolio-body">
+                  <p class="portfolio-domain">unpodcastseguro.com</p>
+                  <p class="portfolio-meta">Ver proyecto</p>
+                </div>
+              </a>
+
+              <a class="portfolio-card" href="https://lyonxsecurity.com" target="_blank" rel="noreferrer">
+                <div class="portfolio-thumb">
+                  <img
+                    src="./assets/img/portfolio/lionxsecurity.webp"
+                    alt="Vista previa de lyonxsecurity.com"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div class="portfolio-body">
+                  <p class="portfolio-domain">lyonxsecurity.com</p>
+                  <p class="portfolio-meta">Ver proyecto</p>
+                </div>
+              </a>
+
+              <a class="portfolio-card" href="https://peluqueriamikelo.es" target="_blank" rel="noreferrer">
+                <div class="portfolio-thumb">
+                  <img
+                    src="./assets/img/portfolio/peluqueriamikelo.webp"
+                    alt="Vista previa de peluqueriamikelo.es"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div class="portfolio-body">
+                  <p class="portfolio-domain">peluqueriamikelo.es</p>
+                  <p class="portfolio-meta">Ver proyecto</p>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="glass-panel">
+            <div class="flex items-center justify-between gap-3">
+              <h3 class="text-lg font-semibold">En desarrollo</h3>
+              <span class="chip chip-loading">Loading</span>
+            </div>
+            <div class="mt-5 grid gap-4">
+              <div class="portfolio-card is-disabled">
+                <div class="portfolio-thumb">
+                  <img
+                    src="./assets/img/portfolio/indianabill.webp"
+                    alt="Vista previa de indianabill.com"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div class="portfolio-body">
+                  <p class="portfolio-domain">indianabill.com</p>
+                  <p class="portfolio-meta">Próximamente</p>
+                </div>
+              </div>
+              <div class="portfolio-card is-disabled">
+                <div class="portfolio-thumb">
+                  <img
+                    src="./assets/img/portfolio/tech4u.png"
+                    alt="Vista previa de tech4u.es"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div class="portfolio-body">
+                  <p class="portfolio-domain">tech4u.es</p>
+                  <p class="portfolio-meta">Próximamente</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Conversión -->
+      <section class="mx-auto max-w-6xl px-4 pb-16 md:pb-20">
+        <div class="cta-banner">
+          <div>
+            <h2 class="text-xl font-semibold md:text-2xl">¿Ya tienes una web? No esperes a que sea tarde.</h2>
+            <p class="mt-2 text-sm text-white/75 md:text-base">
+              La auditamos o la reconstruimos. Reducimos superficie de ataque y priorizamos deuda técnica con impacto real.
+            </p>
+          </div>
+          <a
+            href="#contacto"
+            class="inline-flex items-center justify-center rounded-xl bg-neon px-6 py-3 text-sm font-semibold text-ink transition hover:shadow-glowStrong focus:outline-none focus:ring-2 focus:ring-neon/40"
+          >
+            Solicitar evaluación
+          </a>
+        </div>
+      </section>
+
+      <!-- Contacto -->
+      <section id="contacto" class="mx-auto max-w-6xl px-4 pb-16 md:pb-20">
+        <div class="grid gap-6 md:grid-cols-12">
+          <div class="glass-panel md:col-span-7">
+            <h2 class="text-2xl font-semibold md:text-3xl">Contacto</h2>
+            <p class="mt-3 text-white/70">
+              Describe tu contexto (stack, superficie, amenazas) y te propondremos el plan de acción más directo.
+            </p>
+
+            <form class="mt-6 grid gap-4" id="contactForm">
+              <div class="grid gap-4 sm:grid-cols-2">
+                <label class="grid gap-2 text-sm">
+                  <span class="text-white/80">Nombre</span>
+                  <input class="input" name="name" autocomplete="name" placeholder="Tu nombre" required />
+                </label>
+                <label class="grid gap-2 text-sm">
+                  <span class="text-white/80">Email</span>
+                  <input class="input" type="email" name="email" autocomplete="email" placeholder="tu@email.com" required />
+                </label>
+              </div>
+              <label class="grid gap-2 text-sm">
+                <span class="text-white/80">¿Qué necesitas?</span>
+                <textarea
+                  class="input min-h-[120px] resize-y"
+                  name="message"
+                  placeholder="Ej: Pentest de una web, revisión de API, migración segura..."
+                  required
+                ></textarea>
+              </label>
+
+              <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <p class="text-xs text-white/55">
+                  Al enviar, abrimos un canal y te respondemos con próximos pasos.
+                </p>
+                <button
+                  type="submit"
+                  class="inline-flex items-center justify-center rounded-xl border border-white/10 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:border-white/20 hover:bg-white/15"
+                >
+                  Enviar
+                </button>
+              </div>
+
+              <p id="formStatus" class="hidden text-sm text-white/70"></p>
+            </form>
+          </div>
+
+          <aside class="glass-panel md:col-span-5">
+            <h3 class="text-lg font-semibold">Canales rápidos</h3>
+            <p class="mt-3 text-sm text-white/70">
+              Si ya tienes URL, compártela. Empezamos por superficie pública y luego profundizamos según tu contexto.
+            </p>
+
+            <div class="mt-6 grid gap-3 text-sm">
+              <div class="rounded-2xl border border-white/10 bg-black/20 p-4">
+                <p class="text-xs font-semibold tracking-widest text-white/60">EMAIL</p>
+                <p class="mt-2 font-medium text-white/90">contacto@tusendadigital.com</p>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-black/20 p-4">
+                <p class="text-xs font-semibold tracking-widest text-white/60">TIEMPO DE RESPUESTA</p>
+                <p class="mt-2 font-medium text-white/90">24-48h</p>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-black/20 p-4">
+                <p class="text-xs font-semibold tracking-widest text-white/60">FOCO</p>
+                <p class="mt-2 font-medium text-white/90">Auditoría ofensiva + desarrollo seguro</p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 bg-black/20">
+      <div class="mx-auto max-w-6xl px-4 py-10">
+        <div class="grid gap-8 md:grid-cols-12">
+          <div class="md:col-span-5">
+            <div class="inline-flex items-center gap-2">
+              <span class="h-2 w-2 rounded-full bg-neon shadow-[0_0_24px_rgba(0,255,65,.65)]"></span>
+              <span class="text-sm font-semibold tracking-wide">
+                Tu Senda <span class="text-neon">Digital</span>
+              </span>
+            </div>
+            <p class="mt-3 max-w-sm text-sm text-white/70">
+              Especializada en auditoría ofensiva y desarrollo seguro. Reducimos superficie de ataque con evidencia técnica y arquitectura segura.
+            </p>
+          </div>
+
+          <div class="grid gap-8 sm:grid-cols-2 md:col-span-7">
+            <div>
+              <h4 class="text-sm font-semibold">Enlaces</h4>
+              <div class="mt-3 grid gap-2 text-sm text-white/70">
+                <a class="navlink" href="#servicios">Servicios</a>
+                <a class="navlink" href="#equipo">Equipo</a>
+                <a class="navlink" href="#portfolio">Portfolio</a>
+              </div>
+            </div>
+            <div>
+              <h4 class="text-sm font-semibold">Contacto</h4>
+              <div class="mt-3 grid gap-2 text-sm text-white/70">
+                <a class="navlink" href="mailto:contacto@tusendadigital.com">contacto@tusendadigital.com</a>
+                <a class="navlink" href="#contacto">Formulario</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-10 flex flex-col gap-2 border-t border-white/10 pt-6 text-xs text-white/50 sm:flex-row sm:items-center sm:justify-between">
+          <p>© <span id="year"></span> Tu Senda Digital. Todos los derechos reservados.</p>
+          <p>Hecho con enfoque en rendimiento, accesibilidad y seguridad.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./assets/js/main.js"></script>
+  </body>
+</html>
